@@ -5,6 +5,7 @@ const fileInput = $("#fileinput");
 const displayImage = $("#display-img");
 const viewModelBtn = $("#view-model-btn");
 const programStatus = $("#status");
+const tableWrapper = $("#table-result-wrapper");
 
 let currentModelIndex = 2;
 const modelList = ["model_1", "model_2", "model_3"];
@@ -37,13 +38,7 @@ const unDisableButton = (buttons) => {
 
 let isShowModel = false;
 
-const OBJEC_CLASS = {
-  0: "car",
-  1: "cat",
-  2: "dog",
-  3: "flower",
-  4: "people",
-};
+const OBJEC_CLASS = ["car", "cat", "dog", "flower", "people"];
 
 //GLOBAL VARIABLES ====>
 
@@ -85,7 +80,7 @@ predictBtn.click(function () {
     $(".status-wrapper").removeClass("none");
     setTimeout(async () => {
       await predict();
-    });
+    }, 1000);
   }
 });
 
@@ -112,7 +107,27 @@ async function predict() {
   predictions = [...predictions.dataSync()];
   // convert result to percent
   predictions = predictions.map((val) => {
-    return (val * 100).toFixed(2);
+    return Math.round(val * 100);
   });
-  console.log(predictions);
+  const html = `
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Đối tượng</th>
+        <th scope="col">Dự đoán</th>
+      </tr>
+    </thead>
+    <tbody>
+    ${OBJEC_CLASS.map((objectName, index) => {
+      return `
+        <tr>
+          <td>${objectName}</td>
+          <td>${predictions[index] + " %"}</td>
+        </tr>
+        `;
+    }).join("")}
+    </tbody>
+  </table>
+  `;
+  tableWrapper.html(html);
 }

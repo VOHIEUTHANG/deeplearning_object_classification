@@ -115,7 +115,6 @@ body {
   flex: 3;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex-direction: column;
   gap: 10px;
   box-shadow: rgba(149, 157, 165, 0.15) 0px 0px 20px;
@@ -129,7 +128,7 @@ body {
   flex: 6;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 10px;
   box-shadow: rgba(149, 157, 165, 0.15) 0px 0px 20px;
   border-radius: 12px;
@@ -234,4 +233,9 @@ body {
 }
 .none {
   display: none;
+}
+
+#table-result-wrapper {
+  width: 80%;
+  margin-top: 20px;
 }
