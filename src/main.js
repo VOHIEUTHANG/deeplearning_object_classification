@@ -7,7 +7,7 @@ const viewModelBtn = $("#view-model-btn");
 const programStatus = $("#status");
 const tableWrapper = $("#table-result-wrapper");
 
-let currentModelIndex = 2;
+let currentModelIndex = 3;
 const modelList = ["model_1", "model_2", "model_3"];
 const get_model_path = (modelIndex) =>
   `./models/${modelList[modelIndex - 1]}/build/model.json`;
